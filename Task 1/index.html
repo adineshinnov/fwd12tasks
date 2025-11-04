@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio — Your Name</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!--
+    ==============================================
+    Title      : Task 1 — Personal Portfolio Introduction Page
+    Objective  : Build a colorful, professional, responsive intro page
+    Author     : <Your Name / Roll No.>
+    Notes      : Semantic HTML + accessible, keyboard-friendly UI
+    ==============================================
+  -->
+</head>
+<body>
+  <!-- Decorative gradient backdrop behind the header -->
+  <div class="bg-accent" aria-hidden="true"></div>
+
+  <!-- Header / Hero -->
+  <header class="site-header container">
+    <div class="hero">
+      <figure class="avatar-wrap">
+        <!-- Use the provided image path -->
+        <img src="assets/profile.jpg" class="avatar" alt="Portrait of Your Name" />
+        <figcaption class="sr-only">Profile photograph</figcaption>
+      </figure>
+
+      <div class="hero-body">
+        <h1 class="hero-title">Your Name</h1>
+        <p class="hero-subtitle">Front-End Developer • UI Engineer</p>
+
+        <p class="hero-blurb">
+          I craft clean, accessible interfaces and design systems.
+          Passionate about performance, animations, and delightful UX.
+        </p>
+
+        <div class="cta">
+          <a class="btn btn-primary" href="#" role="button">Download CV</a>
+          <a class="btn btn-ghost" href="mailto:you@example.com" role="button">Contact Me</a>
+        </div>
+
+        <ul class="social">
+          <li><a class="chip" href="#" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a class="chip" href="#" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a class="chip" href="#" target="_blank" rel="noopener">Twitter</a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="container">
+    <section aria-labelledby="about-heading" class="card section">
+      <h2 id="about-heading">About Me</h2>
+      <p>
+        I specialize in building component-driven UIs with <strong>HTML</strong>,
+        <strong>CSS/SCSS</strong> and modern <strong>JavaScript</strong>.
+        I value semantics, accessibility (A11y), and maintainable architecture.
+      </p>
+
+      <h3 class="h6">Key Skills</h3>
+      <ul class="skills">
+        <li class="pill">Semantic HTML</li>
+        <li class="pill">Responsive CSS Grid/Flex</li>
+        <li class="pill">SCSS & Design Tokens</li>
+        <li class="pill">Accessibility</li>
+        <li class="pill">Animations & Transitions</li>
+        <li class="pill">Performance</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="highlights-heading" class="grid-2 section">
+      <article class="card">
+        <h3 id="highlights-heading" class="h6">Highlights</h3>
+        <ul class="list">
+          <li>Shipped design system components for multiple products</li>
+          <li>Improved Core Web Vitals (LCP + CLS) across 3 web apps</li>
+          <li>Mentored teams on CSS architecture and A11y best practices</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3 class="h6">Contact</h3>
+        <p>Email: <a href="mailto:you@example.com">you@example.com</a></p>
+        <p>Location: Hyderabad, India</p>
+        <p>Open to: Front-end roles, UI engineering, design systems</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    © <span id="y"></span> Your Name — Crafted with HTML &amp; CSS
+  </footer>
+
+  <script>
+    // Small enhancement: update year, no framework needed
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

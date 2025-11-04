@@ -1,0 +1,140 @@
+/* ==============================================
+   Title      : Task 2 — Responsive Product Gallery
+   Objective  : Real responsive grid, accessible cards, no external images
+   Author     : <Your Name / Roll No.>
+   ============================================== */
+
+/* ------- Tokens ------- */
+:root{
+  --bg: #0b0f14;
+  --text: #e9f0f7;
+  --muted: #b7c6d9;
+  --surface: #0f1621;
+  --line: rgba(255,255,255,.08);
+  --radius: 16px;
+  --shadow: 0 8px 24px rgba(0,0,0,.25);
+
+  --accent: #6a5cff;
+  --accent-2: #00d4ff;
+}
+
+/* ------- Base ------- */
+*{ box-sizing: border-box }
+html{ scroll-behavior: smooth }
+body{
+  margin: 0;
+  background: radial-gradient(1200px 600px at 20% -10%, color-mix(in oklab, var(--accent) 60%, white 10%) 0, transparent 55%),
+              radial-gradient(1000px 500px at 90% 0%, color-mix(in oklab, var(--accent-2) 55%, white 10%) 0, transparent 55%),
+              var(--bg);
+  color: var(--text);
+  font: 400 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.container{
+  width: min(1200px, 100% - 32px);
+  margin-inline: auto;
+}
+
+.site-header{
+  text-align: center;
+  padding: 28px 16px 8px;
+}
+.title{
+  margin: 0;
+  font-size: clamp(28px, 3.6vw, 40px);
+}
+.subtitle{
+  margin: 6px 0 0;
+  color: var(--muted);
+}
+
+/* ------- Gallery Grid ------- */
+.gallery{
+  /* auto-fit + minmax makes it truly responsive */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: clamp(14px, 2.2vw, 22px);
+  padding: clamp(12px, 2vw, 24px);
+}
+
+/* ------- Card ------- */
+.card{
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 12px;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto; /* image, name, desc (grow), meta */
+  outline: none; /* we’ll show focus ring below */
+}
+.card:focus{ outline: none }
+.card:focus-visible{
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent) 40%, white 35%), var(--shadow);
+}
+
+/* Images: keep 4:3 and cover */
+.thumb{
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: calc(var(--radius) - 4px);
+  object-fit: cover;
+  display: block;
+  user-select: none;
+}
+
+/* Text blocks */
+.name{
+  margin: 10px 4px 2px;
+  font-size: 18px;
+  letter-spacing: .2px;
+}
+.desc{
+  margin: 0 4px 10px;
+  color: var(--muted);
+}
+
+/* Meta row: price + CTA */
+.meta{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 4px;
+}
+.price{
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Button */
+.btn{
+  padding: .5rem .9rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  text-decoration: none;
+  color: var(--text);
+  background: rgba(255,255,255,.06);
+  transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+}
+.btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.10) }
+.btn:focus-visible{ outline: 3px solid color-mix(in oklab, var(--accent-2) 45%, white 35%) }
+
+/* Footer */
+.site-footer{
+  text-align: center;
+  color: var(--muted);
+  padding: 20px 16px 36px;
+}
+
+/* Motion (gentle) */
+@media (prefers-reduced-motion: no-preference){
+  .card{ animation: rise .35s ease both }
+}
+@keyframes rise{
+  from{ opacity: 0; transform: translateY(6px) }
+  to  { opacity: 1; transform: translateY(0) }
+}

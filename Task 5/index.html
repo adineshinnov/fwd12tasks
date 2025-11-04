@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Task 5 — Responsive Navigation & Footer</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!--
+    ==========================================================
+    Task 5: Navigation and Footer with Media Queries
+    Objective : Build an accessible, mobile-first navbar and a
+                multi-column footer that reflows with breakpoints.
+    Notes     : ARIA, keyboard support, sticky header, skip link.
+    ==========================================================
+  -->
+</head>
+<body>
+  <!-- Accessible skip link -->
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Sticky header with brand + nav -->
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="#">
+        <!-- Inline SVG logo (no external asset) -->
+        <svg class="logo" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
+          <defs>
+            <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#2563eb"/>
+              <stop offset="1" stop-color="#00c2ff"/>
+            </linearGradient>
+          </defs>
+          <rect x="2" y="2" width="20" height="20" rx="6" fill="url(#g)"/>
+        </svg>
+        <span class="brand-text">Acme</span>
+      </a>
+
+      <!-- Hamburger (visible on small screens) -->
+      <button id="menuToggle"
+              class="menu-toggle"
+              type="button"
+              aria-expanded="false"
+              aria-controls="siteNav"
+              aria-label="Open main menu">
+        <span class="bar" aria-hidden="true"></span>
+        <span class="bar" aria-hidden="true"></span>
+        <span class="bar" aria-hidden="true"></span>
+      </button>
+
+      <!-- Navigation -->
+      <nav id="siteNav" class="site-nav" aria-label="Main">
+        <ul class="nav-list">
+          <li><a class="nav-link active" href="#">Home</a></li>
+          <li><a class="nav-link" href="#features">Features</a></li>
+          <li><a class="nav-link" href="#pricing">Pricing</a></li>
+          <li><a class="nav-link" href="#about">About</a></li>
+          <li><a class="nav-link btn btn-cta" href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Demo content -->
+  <main id="main" class="container content">
+    <section class="hero">
+      <h1>Responsive Navigation & Footer</h1>
+      <p>
+        Resize the window to see the navigation collapse into a menu button
+        and the footer reflow from one column to two and then four columns.
+      </p>
+    </section>
+
+    <section id="features" class="cards">
+      <article class="card"><h3>Mobile-first</h3><p>Start small, enhance at breakpoints.</p></article>
+      <article class="card"><h3>Accessible</h3><p>Keyboard & ARIA-aware toggle.</p></article>
+      <article class="card"><h3>Sticky</h3><p>Header stays visible on scroll.</p></article>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <section class="footer-col">
+        <h4>Acme</h4>
+        <p class="muted">
+          Clean starters for modern web apps. Built with HTML, CSS & JS.
+        </p>
+      </section>
+
+      <nav class="footer-col" aria-label="Quick links">
+        <h4>Quick Links</h4>
+        <ul class="footer-links">
+          <li><a href="#">Home</a></li>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
+      </nav>
+
+      <section class="footer-col">
+        <h4>Contact</h4>
+        <ul class="footer-links">
+          <li><a href="mailto:hello@acme.dev">hello@acme.dev</a></li>
+          <li><a href="tel:+911234567890">+91 12345 67890</a></li>
+          <li>Hyderabad, India</li>
+        </ul>
+      </section>
+
+      <section class="footer-col">
+        <h4>Newsletter</h4>
+        <form class="newsletter" action="#" method="post" onsubmit="return false">
+          <label class="sr-only" for="emailNews">Email</label>
+          <input id="emailNews" type="email" placeholder="you@example.com" />
+          <button class="btn" type="submit">Join</button>
+        </form>
+        <div class="social">
+          <a href="#" aria-label="Twitter" class="icon">T</a>
+          <a href="#" aria-label="GitHub" class="icon">G</a>
+          <a href="#" aria-label="LinkedIn" class="icon">L</a>
+        </div>
+      </section>
+    </div>
+
+    <div class="container legal">
+      © <span id="y"></span> Acme. All rights reserved.
+    </div>
+  </footer>
+
+  <script src="app.js" defer></script>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Event Registration</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Task 3 — Clean form with JS validation, per-field errors, success toast -->
+</head>
+<body>
+  <header class="page-header">
+    <h1>Event Registration</h1>
+    <p class="sub">Please fill all <span class="req">*</span> mandatory fields.</p>
+  </header>
+
+  <main class="container">
+    <!-- novalidate so JS controls validation -->
+    <form id="regForm" class="form" novalidate>
+      <!-- Full Name -->
+      <div class="field">
+        <label for="name">Full Name <span class="req" aria-hidden="true">*</span></label>
+        <input id="name" name="name" type="text" autocomplete="name" aria-describedby="err-name" />
+        <span id="err-name" class="error" aria-live="polite"></span>
+      </div>
+
+      <!-- Email -->
+      <div class="field">
+        <label for="email">Email <span class="req" aria-hidden="true">*</span></label>
+        <input id="email" name="email" type="email" autocomplete="email" aria-describedby="err-email" />
+        <span id="err-email" class="error" aria-live="polite"></span>
+      </div>
+
+      <!-- Phone -->
+      <div class="field">
+        <label for="phone">Phone <span class="req" aria-hidden="true">*</span></label>
+        <input id="phone" name="phone" type="tel" inputmode="numeric" placeholder="10-digit mobile"
+               aria-describedby="err-phone" />
+        <span id="err-phone" class="error" aria-live="polite"></span>
+      </div>
+
+      <!-- Organization (optional) -->
+      <div class="field">
+        <label for="org">Organization</label>
+        <input id="org" name="org" type="text" autocomplete="organization" aria-describedby="err-org" />
+        <span id="err-org" class="error" aria-live="polite"></span>
+      </div>
+
+      <!-- Event Type -->
+      <div class="field">
+        <label for="type">Event Type <span class="req" aria-hidden="true">*</span></label>
+        <select id="type" name="type" aria-describedby="err-type">
+          <option value="">Select…</option>
+          <option value="workshop">Workshop</option>
+          <option value="seminar">Seminar</option>
+          <option value="talk">Tech Talk</option>
+        </select>
+        <span id="err-type" class="error" aria-live="polite"></span>
+      </div>
+
+      <!-- Attendance Mode -->
+      <fieldset class="field">
+        <legend>Attendance Mode <span class="req" aria-hidden="true">*</span></legend>
+        <div class="inline">
+          <label><input type="radio" name="mode" value="in-person" /> In-person</label>
+          <label><input type="radio" name="mode" value="online" /> Online</label>
+        </div>
+        <span id="err-mode" class="error" aria-live="polite"></span>
+      </fieldset>
+
+      <!-- Date -->
+      <div class="field">
+        <label for="date">Event Date <span class="req" aria-hidden="true">*</span></label>
+        <input id="date" name="date" type="date" aria-describedby="err-date" />
+        <span id="err-date" class="error" aria-live="polite"></span>
+      </div>
+
+      <!-- Time (09:00–18:00) -->
+      <div class="field">
+        <label for="time">Preferred Time <span class="req" aria-hidden="true">*</span></label>
+        <input id="time" name="time" type="time" min="09:00" max="18:00" aria-describedby="err-time" />
+        <span id="err-time" class="error" aria-live="polite"></span>
+      </div>
+
+      <!-- Seats (1–5) -->
+      <div class="field">
+        <label for="seats">Seats Needed <span class="req" aria-hidden="true">*</span></label>
+        <input id="seats" name="seats" type="number" min="1" max="5" step="1" aria-describedby="err-seats" />
+        <span id="err-seats" class="error" aria-live="polite"></span>
+      </div>
+
+      <!-- Comments -->
+      <div class="field">
+        <label for="notes">Comments</label>
+        <textarea id="notes" name="notes" rows="3" placeholder="Anything we should know?"
+                  aria-describedby="err-notes"></textarea>
+        <span id="err-notes" class="error" aria-live="polite"></span>
+      </div>
+
+      <!-- Terms -->
+      <div class="field">
+        <label class="checkbox">
+          <input id="terms" name="terms" type="checkbox" />
+          I agree to the Terms &amp; Privacy <span class="req" aria-hidden="true">*</span>
+        </label>
+        <span id="err-terms" class="error" aria-live="polite"></span>
+      </div>
+
+      <div class="actions">
+        <button type="submit" class="btn">Register</button>
+        <button type="reset" class="btn btn-ghost" id="resetBtn">Reset</button>
+      </div>
+    </form>
+  </main>
+
+
+  <script src="app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Responsive Product Gallery</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!--
+    ==============================================
+    Title      : Task 2 — Responsive Product Gallery
+    Objective  : Build a responsive, accessible product grid
+    Author     : <Your Name / Roll No.>
+    Notes      : Uses CSS Grid with auto-fit/minmax and inline SVG images
+    ==============================================
+  -->
+</head>
+<body>
+  <header class="site-header">
+    <h1 class="title">Featured Products</h1>
+    <p class="subtitle">Clean, colorful, and truly responsive cards</p>
+  </header>
+
+  <main>
+    <!-- Responsive Grid -->
+    <section class="gallery container" aria-label="Products">
+      <!-- Card 1 -->
+      <article class="card" tabindex="0">
+        <img class="thumb"
+             width="800" height="600" loading="lazy"
+             alt="Leather Wallet placeholder image"
+             src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='600'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%236a5cff'/><stop offset='1' stop-color='%2300d4ff'/></linearGradient></defs><rect width='100%25' height='100%25' fill='url(%23g)'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='42' font-family='Arial'>Wallet</text></svg>">
+        <h3 class="name">Leather Wallet</h3>
+        <p class="desc">Hand-stitched wallet with RFID protection.</p>
+        <div class="meta">
+          <span class="price">₹1,299</span>
+          <a href="#" class="btn">View</a>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="card" tabindex="0">
+        <img class="thumb"
+             width="800" height="600" loading="lazy"
+             alt="Backpack placeholder image"
+             src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='600'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23ff7ad9'/><stop offset='1' stop-color='%23ffb36b'/></linearGradient></defs><rect width='100%25' height='100%25' fill='url(%23g)'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='42' font-family='Arial'>Backpack</text></svg>">
+        <h3 class="name">Backpack</h3>
+        <p class="desc">Minimal backpack for daily commute.</p>
+        <div class="meta">
+          <span class="price">₹2,499</span>
+          <a href="#" class="btn">View</a>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="card" tabindex="0">
+        <img class="thumb"
+             width="800" height="600" loading="lazy"
+             alt="Sunglasses placeholder image"
+             src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='600'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%2300c896'/><stop offset='1' stop-color='%2382eaff'/></linearGradient></defs><rect width='100%25' height='100%25' fill='url(%23g)'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='42' font-family='Arial'>Sunglasses</text></svg>">
+        <h3 class="name">Sunglasses</h3>
+        <p class="desc">UV400 protection eyewear.</p>
+        <div class="meta">
+          <span class="price">₹799</span>
+          <a href="#" class="btn">View</a>
+        </div>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="card" tabindex="0">
+        <img class="thumb"
+             width="800" height="600" loading="lazy"
+             alt="Watch placeholder image"
+             src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='600'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23ff5e62'/><stop offset='1' stop-color='%23ff9966'/></linearGradient></defs><rect width='100%25' height='100%25' fill='url(%23g)'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='42' font-family='Arial'>Watch</text></svg>">
+        <h3 class="name">Classic Watch</h3>
+        <p class="desc">Stainless steel with leather strap.</p>
+        <div class="meta">
+          <span class="price">₹4,999</span>
+          <a href="#" class="btn">View</a>
+        </div>
+      </article>
+
+      <!-- Card 5 -->
+      <article class="card" tabindex="0">
+        <img class="thumb"
+             width="800" height="600" loading="lazy"
+             alt="Shoes placeholder image"
+             src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='600'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%2378ffd6'/><stop offset='1' stop-color='%2374a9ff'/></linearGradient></defs><rect width='100%25' height='100%25' fill='url(%23g)'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='42' font-family='Arial'>Shoes</text></svg>">
+        <h3 class="name">Running Shoes</h3>
+        <p class="desc">Breathable mesh design.</p>
+        <div class="meta">
+          <span class="price">₹3,199</span>
+          <a href="#" class="btn">View</a>
+        </div>
+      </article>
+
+      <!-- Card 6 -->
+      <article class="card" tabindex="0">
+        <img class="thumb"
+             width="800" height="600" loading="lazy"
+             alt="Belt placeholder image"
+             src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='600'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23f9d423'/><stop offset='1' stop-color='%23ff4e50'/></linearGradient></defs><rect width='100%25' height='100%25' fill='url(%23g)'/><text x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='42' font-family='Arial'>Belt</text></svg>">
+        <h3 class="name">Leather Belt</h3>
+        <p class="desc">Full-grain leather with metal buckle.</p>
+        <div class="meta">
+          <span class="price">₹899</span>
+          <a href="#" class="btn">View</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer">© <span id="y"></span> Your Brand</footer>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+/* ============================================================
+   Task 9 — Async API Calls & Layout with calc()
+   Shows CSS functions: calc(), min(), max() and custom properties
+   ============================================================ */
+
+/* ---------- Tokens ---------- */
+:root {
+  --header-h: 64px;      /* used with calc() below */
+  --footer-h: 56px;      /* used with calc() below */
+
+  --bg: #f7f9fc;
+  --text: #0f172a;
+  --muted: #5e6b7a;
+  --surface: #ffffff;
+  --line: rgba(15, 23, 42, 0.12);
+  --primary: #2563eb;
+  --primary-2: #00c2ff;
+
+  --radius: 14px;
+  --shadow: 0 10px 24px rgba(0,0,0,.08);
+}
+
+/* ---------- Base ---------- */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--text);
+  background:
+    radial-gradient(700px 300px at 10% -10%, #e7f0ff 0, transparent 60%),
+    radial-gradient(800px 340px at 90% 0%, #eafdf7 0, transparent 60%),
+    var(--bg);
+  font: 400 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.container {
+  /* use min() to cap width; then calc() to subtract page padding */
+  width: min(1160px, calc(100% - 32px));
+  margin-inline: auto;
+}
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 10;
+  height: var(--header-h);
+  background: rgba(255,255,255,.8);
+  backdrop-filter: saturate(120%) blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.header-row {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 12px;
+}
+.brand { margin: 0; font-weight: 800; letter-spacing: .3px; }
+.controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.control { display: grid; gap: 4px; }
+.control span { font-size: 12px; color: var(--muted); }
+
+select, input[type="number"] {
+  background: #fbfdff;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: .5rem .7rem;
+}
+.btn {
+  padding: .55rem .9rem; border-radius: 999px;
+  border: 1px solid var(--line); background: #eef3ff; color: #0b1b3a;
+  cursor: pointer;
+}
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-2));
+  color: #fff; border-color: transparent;
+}
+
+/* ---------- Content area height using calc() ---------- */
+.content {
+  /* fill the viewport minus header/footer; also subtract extra spacing */
+  min-height: calc(100vh - var(--header-h) - var(--footer-h) - 24px);
+  padding: 16px 0 24px;
+}
+
+/* ---------- Status bar ---------- */
+.status {
+  min-height: 1.4em;
+  margin-bottom: 10px;
+  color: var(--muted);
+}
+
+/* ---------- Grid & Cards ---------- */
+.grid {
+  display: grid;
+  gap: 12px;
+  /* auto-fit ensures responsive wrap; min() caps column min width */
+  grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* image | body grows | footer */
+  overflow: hidden;
+}
+
+/* Using max() to ensure image isn’t too small on very tiny screens */
+.card .hero {
+  width: 100%;
+  height: max(180px, 24vh);
+  object-fit: cover;
+  display: block;
+}
+
+.card .body {
+  padding: 10px 12px;
+  display: grid;
+  gap: 4px;
+}
+.card .title { margin: 0; font-weight: 800; line-height: 1.3; }
+.card .meta  { color: var(--muted); font-size: 14px; }
+.card .wx    { font-weight: 600; }
+
+.card .foot {
+  border-top: 1px solid var(--line);
+  padding: 10px 12px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  height: var(--footer-h);
+  display: grid; place-items: center;
+  border-top: 1px solid var(--line);
+  background: #fff;
+  color: var(--muted);
+}
+
+/* ---------- Helpers ---------- */
+.skeleton {
+  background: linear-gradient(90deg, #f0f3f9 0, #f7f9ff 50%, #f0f3f9 100%);
+  background-size: 200% 100%;
+  animation: pulse 1.2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0% { background-position: 0% 0 }
+  100% { background-position: -200% 0 }
+}

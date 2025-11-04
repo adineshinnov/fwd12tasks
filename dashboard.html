@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="page">
+  <!-- Top header -->
+  <header class="site-header">
+    <div class="container header-row">
+      <h1 class="brand">Student Dashboard</h1>
+      <div class="userbox">
+        <span id="hello" class="hello">Hi, —</span>
+        <button id="logoutBtn" class="btn" type="button" title="Logout">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main layout -->
+  <div class="container layout">
+    <!-- Sidebar -->
+    <nav class="sidebar" aria-label="Task navigation">
+      <ul id="menu" class="menu">
+        <!-- JS will populate Task 1..Task 12 -->
+      </ul>
+    </nav>
+
+    <!-- Content -->
+    <main class="content" id="content" aria-live="polite">
+      <div class="frame-toolbar">
+        <div class="left">
+          <strong id="frameTitle">Select a task</strong>
+          <span id="frameStatus" class="muted"></span>
+        </div>
+        <div class="right">
+          <a id="openNewTab" class="btn" href="#" target="_blank" rel="noopener">Open in new tab</a>
+        </div>
+      </div>
+
+      <div class="frame-wrap">
+        <iframe id="taskFrame" title="Task preview" src="" loading="eager"></iframe>
+      </div>
+    </main>
+  </div>
+
+  <footer class="site-footer container">
+    © <span id="y"></span> Demo Dashboard
+  </footer>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script src="dashboard.js" defer></script>
+</body>
+</html>

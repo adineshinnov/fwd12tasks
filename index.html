@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="page">
+  <main class="container center-wrap">
+    <section class="card login-card" aria-labelledby="loginTitle">
+      <h1 id="loginTitle" class="h4">Welcome Back</h1>
+      <p class="muted">Please sign in to continue.</p>
+
+      <form id="loginForm" novalidate>
+        <!-- Username -->
+        <label class="label" for="username">Username <span class="req">*</span></label>
+        <input id="username" name="username" type="text" autocomplete="username"
+               placeholder="Enter username" required minlength="3" />
+        <small id="uErr" class="err" aria-live="polite"></small>
+
+        <!-- Password -->
+        <label class="label" for="password">Password <span class="req">*</span></label>
+        <input id="password" name="password" type="password" autocomplete="current-password"
+               placeholder="Minimum 6 chars with a number" required minlength="6" />
+        <small id="pErr" class="err" aria-live="polite"></small>
+
+        <div class="row">
+          <label class="checkbox">
+            <input id="remember" type="checkbox" />
+            <span>Remember me (stores username)</span>
+          </label>
+          <button class="btn primary" type="submit">Login</button>
+        </div>
+      </form>
+      <div id="formMsg" class="banner d-none" role="status" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer container">
+    © <span id="y"></span> Demo Login (Front-end only)
+  </footer>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script src="login.js" defer></script>
+</body>
+</html>

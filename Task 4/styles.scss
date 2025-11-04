@@ -1,0 +1,278 @@
+/* =====================================================================
+   Task 4 — Themed Layout (SCSS source with explanations)
+
+   ▶ What is SCSS?
+     - SCSS is a superset of CSS (Sass syntax) that adds **variables**,
+       **nesting**, **mixins**, **functions**, and **control directives**.
+     - Browsers do NOT read SCSS directly; you must COMPILE it to CSS.
+
+   ▶ How does SCSS differ from plain CSS (key points used here)?
+     1) Variables:
+        - SCSS variables (e.g., $radius) are resolved at **build time**.
+        - CSS variables (e.g., --bg) live in the browser and can change
+          at **run time** (great for theming).
+        - We use BOTH: SCSS variables for reusable constants and mixins,
+          CSS custom properties for themeable tokens.
+
+     2) Nesting:
+        - SCSS lets us nest selectors inside a parent block for clarity.
+          The compiler expands them to flat CSS selectors.
+
+     3) Mixins:
+        - Reusable property groups (like “card chrome” or fluid type).
+          Call with `@include`.
+
+     4) Build step:
+        - Compile with the Sass CLI (example command below).
+        - The output, `styles.css`, is what browsers load.
+
+   ▶ Compile command (run in Task 4 folder):
+      sass styles.scss styles.css --style expanded --no-source-map
+      (Use `--style compressed` for a minified build.)
+
+   ▶ File structure here:
+      - We define SCSS variables & mixins (compile-time)
+      - We define CSS custom properties in :root and [data-theme] (run-time)
+      - The layout uses nesting for readability
+
+   ===================================================================== */
+
+/* ----------------------------
+   SCSS variables (compile-time)
+   These do not exist in the final CSS.
+   ---------------------------- */
+$radius:      16px;
+$radius-sm:   12px;
+$shadow:      0 12px 28px rgba(0, 0, 0, 0.12);
+$shadow-soft: 0 10px 24px rgba(0, 0, 0, 0.10);
+
+/* ----------------------------
+   Mixins
+   - @mixin card: common card chrome
+   - @mixin fluid: fluid type scale via clamp()
+   ---------------------------- */
+@mixin card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: $radius;
+  box-shadow: $shadow;
+}
+
+@mixin fluid($min, $max) {
+  font-size: clamp($min, 2.6vw, $max);
+}
+
+/* ----------------------------
+   CSS Custom Properties (run-time)
+   - Live in the output CSS
+   - Enable theming via [data-theme] switch
+   ---------------------------- */
+
+/* Light tokens (default) */
+:root {
+  --bg:       #f7f9fc;
+  --text:     #0f172a;
+  --muted:    #5e6b7a;
+  --surface:  #ffffff;
+  --line:     rgba(15, 23, 42, 0.12);
+  --primary:  #2563eb;
+  --primary-2:#00c2ff;
+  --ring:     color-mix(in oklab, var(--primary) 30%, white 70%);
+}
+
+/* Dark tokens (override) */
+[data-theme="dark"] {
+  --bg:       #0b0f14;
+  --text:     #e9f0f7;
+  --muted:    #b7c6d9;
+  --surface:  #0f1621;
+  --line:     rgba(255, 255, 255, 0.12);
+  --primary:  #6a5cff;
+  --primary-2:#00d4ff;
+  --ring:     color-mix(in oklab, var(--primary) 35%, white 65%);
+}
+
+/* ----------------------------
+   Base
+   ---------------------------- */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--text);
+  // Background uses CSS variables so it adapts to theme at runtime.
+  background:
+    radial-gradient(900px 380px at 12% -10%, color-mix(in oklab, var(--primary) 18%, white 82%) 0, transparent 60%),
+    radial-gradient(900px 380px at 88% -10%, color-mix(in oklab, var(--primary-2) 18%, white 82%) 0, transparent 60%),
+    var(--bg);
+  font: 400 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* ----------------------------
+   Layout helper
+   ---------------------------- */
+.container {
+  width: min(1120px, 100% - 32px);
+  margin-inline: auto;
+}
+
+/* ----------------------------
+   Header + Theme Toggle (nested)
+   Demonstrates SCSS nesting: child selectors live inside parent.
+   ---------------------------- */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 0 8px;
+}
+
+.brand {
+  margin: 0;
+  @include fluid(22px, 28px); // uses mixin
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: $radius-sm;
+  background: var(--surface);
+  cursor: pointer;
+
+  /* nested child selectors compile to:
+     .theme-toggle .track {…} and .theme-toggle .track .thumb {…} */
+  .track {
+    --size: 38px;
+    position: relative;
+    width: calc(var(--size) * 1.6);
+    height: var(--size);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.02));
+    border: 1px solid var(--line);
+    border-radius: 999px;
+
+    .thumb {
+      position: absolute;
+      inset: 3px auto 3px 3px;
+      width: calc(var(--size) - 6px);
+      height: calc(var(--size) - 6px);
+      background: linear-gradient(135deg, var(--primary), var(--primary-2));
+      border-radius: 999px;
+      transition: transform 0.25s ease;
+      box-shadow: $shadow-soft;
+    }
+  }
+
+  /* pseudo-class attribute nesting:
+     compiles to .theme-toggle[aria-pressed="true"] .thumb {…} */
+  &[aria-pressed="true"] .thumb {
+    transform: translateX(100%);
+  }
+}
+
+/* ----------------------------
+   Content + Intro card
+   ---------------------------- */
+.content {
+  padding: 8px 0 36px;
+}
+
+.intro {
+  @include card;                // uses the card mixin
+  padding: clamp(16px, 2vw, 22px);
+  margin-bottom: 16px;
+
+  h2 {
+    margin-top: 0;
+  }
+
+  .features {
+    margin: 8px 0 0;
+    padding-left: 18px;
+  }
+}
+
+/* ----------------------------
+   Responsive Grid
+   - SCSS nesting with media queries
+   ---------------------------- */
+.grid {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
+
+  @media (max-width: 980px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ----------------------------
+   Card (with nested children)
+   ---------------------------- */
+.card {
+  @include card;
+  padding: 12px;
+  display: grid;
+  gap: 10px;
+
+  .hero {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    border-radius: $radius-sm;
+    object-fit: cover;
+  }
+
+  h3 {
+    margin: 2px 0 0;
+  }
+
+  .btn {
+    justify-self: start;
+    padding: 0.55rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: color-mix(in oklab, var(--primary) 10%, white 90%);
+    color: #0b1b3a;
+    text-decoration: none;
+
+    &:focus-visible {
+      outline: 3px solid var(--ring);
+    }
+  }
+}
+
+/* ----------------------------
+   Footer
+   ---------------------------- */
+.site-footer {
+  color: var(--muted);
+  border-top: 1px solid var(--line);
+  padding: 20px 0 36px;
+  text-align: center;
+}
+
+/* =====================================================================
+   Recap — SCSS vs CSS in this file:
+
+   - Lines with $variables, @mixin, @include, and nested selectors are
+     SCSS-only features. They DO NOT appear in the final CSS.
+   - The :root and [data-theme="dark"] blocks define CSS Custom Properties
+     that remain in the generated CSS and can change at runtime (e.g.,
+     via `data-theme` toggling in JavaScript).
+   - Nesting (e.g., .theme-toggle { .track { .thumb {…} } }) compiles to
+     flat selectors (.theme-toggle .track .thumb {…}) in CSS.
+   - Compile with the Sass CLI to regenerate `styles.css`.
+   ===================================================================== */

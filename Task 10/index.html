@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Task 10 — Storage, Fetch & Error Handling</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!--
+    Task 10 — Scenario:
+      • Build a task dashboard
+      • Persist tasks & preferences in browser storage
+      • Fetch external data and render it dynamically
+      • Handle errors with try/catch and reflect them in the UI
+  -->
+</head>
+<body>
+  <header class="site-header container">
+    <h1 class="brand">Task Dashboard</h1>
+
+    <div class="header-actions">
+      <!-- Theme preference is stored in localStorage -->
+      <button id="themeBtn" class="btn" type="button" aria-pressed="false">🌗 Toggle Theme</button>
+
+      <!-- For demo/testing: trigger a failing endpoint to see error UI -->
+      <label class="fail-toggle">
+        <input id="failToggle" type="checkbox" />
+        <span>Simulate fetch error</span>
+      </label>
+    </div>
+  </header>
+
+  <main class="container layout">
+    <!-- Left: Tasks (localStorage) -->
+    <section class="panel card">
+      <h2 class="h5">My Tasks</h2>
+
+      <form id="taskForm" class="task-form" autocomplete="off">
+        <label class="sr-only" for="title">Task title</label>
+        <input id="title" type="text" placeholder="Add a new task…" required />
+        <button class="btn btn-primary" type="submit">Add</button>
+        <button id="importBtn" class="btn" type="button" title="Import sample tasks">Import Sample</button>
+        <button id="clearBtn" class="btn btn-ghost" type="button" title="Clear all tasks">Clear</button>
+      </form>
+
+      <!-- Error/Info from storage ops (if any) -->
+      <div id="taskStatus" class="status" role="status" aria-live="polite"></div>
+
+      <ul id="taskList" class="task-list" aria-live="polite" aria-label="Tasks">
+        <!-- JS will render tasks here -->
+      </ul>
+    </section>
+
+    <!-- Right: External Data (fetch) -->
+    <section class="panel card">
+      <div class="panel-head">
+        <h2 class="h5">Community Feed (via fetch)</h2>
+        <div class="panel-actions">
+          <button id="refreshBtn" class="btn" type="button">Refresh</button>
+        </div>
+      </div>
+
+      <!-- Error/Info from fetch ops -->
+      <div id="fetchStatus" class="status" role="status" aria-live="polite"></div>
+
+      <div id="feed" class="feed">
+        <!-- JS will render fetched items here -->
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer container">
+    © <span id="y"></span> Task 10 — Storage, Fetch & Error Handling
+  </footer>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script src="app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+/* ============================================================
+   Task 5 — Responsive Navigation & Footer (CSS)
+   Media queries: 640px (sm), 960px (md)
+   ============================================================ */
+
+/* ---------- Tokens ---------- */
+:root {
+  --bg: #f7f9fc;
+  --text: #0f172a;
+  --muted: #5e6b7a;
+  --surface: #ffffff;
+  --line: rgba(15, 23, 42, 0.12);
+  --primary: #2563eb;
+  --primary-2: #00c2ff;
+
+  --radius: 14px;
+  --shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* ---------- Base ---------- */
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--text);
+  background:
+    radial-gradient(700px 300px at 10% -10%, #e7f0ff 0, transparent 60%),
+    radial-gradient(800px 340px at 90% 0%, #eafdf7 0, transparent 60%),
+    var(--bg);
+  font: 400 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+.container { width: min(1120px, 100% - 32px); margin-inline: auto; }
+
+.sr-only {
+  position: absolute !important; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0);
+  white-space: nowrap; border: 0;
+}
+.skip-link {
+  position: absolute; left: 8px; top: -100px;
+  background: #fff; color: #0b1b3a; padding: .5rem .75rem;
+  border-radius: 10px; border: 1px solid var(--line);
+}
+.skip-link:focus { top: 8px; }
+
+/* ---------- Header / Nav ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,.8);
+  backdrop-filter: saturate(120%) blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.header-row {
+  display: grid; grid-template-columns: 1fr auto auto; align-items: center;
+  gap: 12px; padding: 10px 0;
+}
+
+/* Brand */
+.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
+.logo { display: inline-block; }
+.brand-text { font-weight: 800; letter-spacing: .3px; font-size: 20px; }
+
+/* Hamburger (shown on small screens) */
+.menu-toggle {
+  display: inline-flex; flex-direction: column; justify-content: center;
+  gap: 4px; width: 44px; height: 40px; padding: 0;
+  background: #fff; border: 1px solid var(--line); border-radius: 10px;
+  cursor: pointer;
+}
+.menu-toggle .bar {
+  width: 22px; height: 2px; background: #0b1b3a; margin-inline: auto;
+}
+
+/* Nav container */
+.site-nav {
+  /* Mobile: hidden by default; becomes overlay panel */
+  position: absolute; inset: 64px 16px auto 16px;
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 10px; display: none;
+}
+.site-nav.open { display: block; }
+
+.nav-list {
+  list-style: none; margin: 0; padding: 6px;
+  display: grid; gap: 6px;
+}
+.nav-link {
+  display: block; padding: .6rem .8rem; border-radius: 10px;
+  text-decoration: none; color: #0b1b3a;
+}
+.nav-link:hover { background: #eef3ff; }
+.nav-link.active { background: #e9f2ff; color: #102a54; font-weight: 600; }
+
+/* Buttons inside nav */
+.btn {
+  display: inline-block; border: 1px solid var(--line);
+  padding: .55rem .9rem; border-radius: 999px; text-decoration: none;
+  color: #0b1b3a; background: #eef3ff;
+}
+.btn-cta {
+  background: linear-gradient(135deg, var(--primary), var(--primary-2));
+  color: white; border-color: transparent;
+}
+
+/* ---------- Content demo ---------- */
+.content { padding: 22px 0 40px; }
+.hero {
+  background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+  box-shadow: var(--shadow); padding: 16px; margin-bottom: 16px;
+}
+.cards { display: grid; gap: 12px; grid-template-columns: 1fr; }
+.card {
+  background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 12px;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  margin-top: 24px; border-top: 1px solid var(--line); background: #fff;
+}
+.footer-grid {
+  display: grid; gap: 16px; grid-template-columns: 1fr; padding: 18px 0;
+}
+.footer-col h4 { margin: 0 0 8px; }
+.muted { color: var(--muted); }
+
+.footer-links { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+.footer-links a { color: #0b1b3a; text-decoration: none; }
+.footer-links a:hover { text-decoration: underline; }
+
+.newsletter { display: flex; gap: 8px; }
+.newsletter input {
+  flex: 1 1 auto; padding: .55rem .7rem; border: 1px solid var(--line);
+  border-radius: 10px; background: #fbfdff;
+}
+.social { display: flex; gap: 8px; margin-top: 10px; }
+.icon {
+  width: 36px; height: 36px; display: grid; place-items: center;
+  border: 1px solid var(--line); border-radius: 10px; text-decoration: none;
+  background: #fbfdff; color: #0b1b3a; font-weight: 700;
+}
+
+.legal {
+  border-top: 1px solid var(--line); color: var(--muted);
+  padding: 12px 0 24px; text-align: center;
+}
+
+/* =========================================================
+   MEDIA QUERIES (Mobile-first)
+   ---------------------------------------------------------
+   • Base: phones (default)
+   • ≥ 640px: small tablets — align nav row better
+   • ≥ 960px: laptops/desktop — inline nav & multi-column footer
+   ========================================================= */
+
+/* ≥ 640px (sm) */
+@media (min-width: 640px) {
+  .header-row { grid-template-columns: auto 1fr auto; }
+  .site-nav { inset: 64px calc(50% - 320px) auto calc(50% - 320px); } /* center panel */
+  .cards { grid-template-columns: repeat(2, 1fr); }
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ≥ 960px (md) */
+@media (min-width: 960px) {
+  /* Desktop nav becomes inline, hamburger hidden */
+  .menu-toggle { display: none; }
+  .site-nav {
+    position: static; display: block; border: 0; box-shadow: none;
+    background: transparent; padding: 0;
+  }
+  .nav-list { display: flex; gap: 4px; align-items: center; }
+  .nav-link { border-radius: 999px; }
+  .btn-cta { margin-left: 6px; }
+
+  .cards { grid-template-columns: repeat(3, 1fr); }
+  .footer-grid { grid-template-columns: 2fr 1fr 1fr 1.2fr; }
+}
+
+/* Reduced motion: keep things snappy for sensitive users */
+@media (prefers-reduced-motion: no-preference) {
+  .menu-toggle .bar { transition: transform .2s ease; }
+  .menu-toggle:active .bar { transform: scaleX(.9); }
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Task 12 — E-Commerce Cart (OOP + SCSS + Storage)</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="site-header container">
+    <h1 class="brand">Shop<span class="accent">Now</span></h1>
+
+    <div class="actions">
+      <button id="themeBtn" class="btn icon" type="button" aria-pressed="false" title="Toggle theme" aria-label="Toggle theme">🌗</button>
+
+      <div class="cart-icon-wrap">
+        <button id="openCartBtn" class="btn icon cart-btn" type="button" aria-haspopup="dialog" aria-controls="cartDrawer" aria-expanded="false" title="Open cart">
+          🛒
+        </button>
+        <span id="cartCount" class="badge" aria-live="polite" aria-atomic="true">0</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Toolbar -->
+  <div class="toolbar container">
+    <div class="filters">
+      <input id="q" type="search" placeholder="Search product title or category…" />
+      <select id="cat">
+        <option value="all">All categories</option>
+        <option value="electronics">Electronics</option>
+        <option value="books">Books</option>
+        <option value="clothing">Clothing</option>
+      </select>
+      <select id="sort">
+        <option value="default">Sort: Default</option>
+        <option value="price-asc">Price ↑</option>
+        <option value="price-desc">Price ↓</option>
+        <option value="rating-desc">Rating ↓</option>
+        <option value="rating-asc">Rating ↑</option>
+      </select>
+    </div>
+    <button id="seedBtn" class="btn" type="button">Load Sample Products</button>
+  </div>
+
+  <!-- Products Grid -->
+  <main class="container content">
+    <section aria-live="polite">
+      <div id="empty" class="alert info d-none">No products. Click <strong>Load Sample Products</strong> or adjust filters.</div>
+      <div id="grid" class="grid"></div>
+    </section>
+  </main>
+
+  <!-- Cart Drawer -->
+  <aside id="cartDrawer" class="drawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle" hidden>
+    <div class="drawer-panel">
+      <header class="drawer-head">
+        <h2 id="cartTitle" class="h5">Your Cart</h2>
+        <button id="closeCartBtn" class="btn icon" type="button" aria-label="Close cart">✕</button>
+      </header>
+
+      <div id="cartList" class="cart-list" aria-live="polite">
+        <!-- items injected here -->
+      </div>
+
+      <footer class="drawer-foot">
+        <div class="total">
+          <span>Subtotal</span>
+          <strong id="subtotal">₹0.00</strong>
+        </div>
+        <div class="total">
+          <span>Taxes (est.)</span>
+          <strong id="tax">₹0.00</strong>
+        </div>
+        <div class="total grand">
+          <span>Total</span>
+          <strong id="grand">₹0.00</strong>
+        </div>
+
+        <div class="checkout-actions">
+          <button id="clearCartBtn" class="btn ghost" type="button">Clear</button>
+          <button class="btn primary" type="button" id="checkoutBtn">Checkout</button>
+        </div>
+      </footer>
+    </div>
+    <div id="drawerBackdrop" class="drawer-backdrop"></div>
+  </aside>
+
+  <!-- Toast -->
+  <div id="toast" class="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+
+  <footer class="site-footer container">
+    © <span id="y"></span> Task 12 — OOP + SCSS + Storage + Theming
+  </footer>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script src="app.js" defer></script>
+</body>
+</html>

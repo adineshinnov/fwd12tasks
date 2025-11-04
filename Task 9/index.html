@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Task 9 — Async API Calls & Layout with calc()</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!--
+    ==========================================================
+    Task 9 — Async API Calls and Layout Adjustments
+    Scenario:
+      A travel site loads dynamic content. Use async/await and
+      promises to chain API requests; apply CSS functions like calc().
+    APIs (no key needed):
+      • REST Countries v3.1 – country / capital / latlng
+      • Open-Meteo – current weather by lat/lon
+    Skills: Async (await, promises, chaining), CSS calc(), DOM ops
+    ==========================================================
+  -->
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-row">
+      <h1 class="brand">🌍 Travel Now</h1>
+
+      <div class="controls">
+        <label class="control">
+          <span>Region</span>
+          <select id="region">
+            <option value="asia">Asia</option>
+            <option value="europe">Europe</option>
+            <option value="africa">Africa</option>
+            <option value="americas">Americas</option>
+            <option value="oceania">Oceania</option>
+          </select>
+        </label>
+
+        <label class="control">
+          <span>Limit</span>
+          <input id="limit" type="number" min="3" max="24" step="1" value="8" />
+        </label>
+
+        <button id="loadBtn" class="btn btn-primary">Load Destinations</button>
+        <button id="clearBtn" class="btn">Clear</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container content">
+    <!-- Info / error bar -->
+    <div id="status" class="status" role="status" aria-live="polite"></div>
+
+    <!-- Grid -->
+    <section id="grid" class="grid" aria-live="polite" aria-busy="false">
+      <!-- Cards injected by JS -->
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      © <span id="y"></span> Task 9 — Async + calc()
+    </div>
+  </footer>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script src="app.js" defer></script>
+</body>
+</html>
