@@ -1,0 +1,114 @@
+/* ==============================================
+   Simple SCSS Theme Layout
+   ============================================== */
+
+/* ---------------------
+   SCSS Variables
+   --------------------- */
+$radius: 10px;
+$shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+
+/* ---------------------
+   Mixins (Reusable blocks)
+   --------------------- */
+@mixin card-style {
+  background: var(--card);
+  padding: 1rem;
+  border-radius: $radius;
+  box-shadow: $shadow;
+}
+
+/* ---------------------
+   CSS Variables — Light Theme
+   --------------------- */
+:root {
+  --bg: #f8fafc;
+  --text: #111827;
+  --card: #ffffff;
+  --primary: #2563eb;
+}
+
+/* ---------------------
+   CSS Variables — Dark Theme
+   --------------------- */
+[data-theme="dark"] {
+  --bg: #111827;
+  --text: #f1f5f9;
+  --card: #1e293b;
+  --primary: #38bdf8;
+}
+
+/* ---------------------
+   Base Styles
+   --------------------- */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.3s, color 0.3s;
+}
+
+/* ---------------------
+   Header + Footer (Nested)
+   --------------------- */
+.header, .footer {
+  text-align: center;
+  padding: 1rem;
+  background: var(--card);
+  box-shadow: $shadow;
+
+  button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}
+
+/* ---------------------
+   Content + Grid
+   --------------------- */
+.content {
+  max-width: 800px;
+  margin: 1rem auto;
+  padding: 0 1rem;
+
+  .card {
+    @include card-style; // Mixin used here
+    margin: 1rem 0;
+
+    h2, h3 {
+      color: var(--primary);
+    }
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+}
+
+/* ---------------------
+   Footer
+   --------------------- */
+.footer {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  color: gray;
+}
+
+/* 
+ sass style.scss style.css --style expanded --no-source-map
+*/

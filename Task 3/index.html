@@ -1,118 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Event Registration</title>
-  <link rel="stylesheet" href="styles.css" />
-  <!-- Task 3 — Clean form with JS validation, per-field errors, success toast -->
-</head>
-<body>
-  <header class="page-header">
-    <h1>Event Registration</h1>
-    <p class="sub">Please fill all <span class="req">*</span> mandatory fields.</p>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Event Registration</title>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Task 3 — Clean form with JS validation, per-field errors, success toast -->
+  </head>
+  <body>
+    <header class="page-header">
+      <h1>Event Registration</h1>
+      <p class="sub">Please fill all <span class="req">*</span> mandatory fields.</p>
+    </header>
 
-  <main class="container">
-    <!-- novalidate so JS controls validation -->
-    <form id="regForm" class="form" novalidate>
-      <!-- Full Name -->
-      <div class="field">
-        <label for="name">Full Name <span class="req" aria-hidden="true">*</span></label>
-        <input id="name" name="name" type="text" autocomplete="name" aria-describedby="err-name" />
-        <span id="err-name" class="error" aria-live="polite"></span>
-      </div>
+    <main class="container">
+      <!-- novalidate so JS controls validation -->
+        <form id="regForm">
+          <h3>Event Registration Form</h3>
 
-      <!-- Email -->
-      <div class="field">
-        <label for="email">Email <span class="req" aria-hidden="true">*</span></label>
-        <input id="email" name="email" type="email" autocomplete="email" aria-describedby="err-email" />
-        <span id="err-email" class="error" aria-live="polite"></span>
-      </div>
+          <label>Name: <input type="text" id="name"></label>
+          <span id="err-name" class="error"></span><br>
 
-      <!-- Phone -->
-      <div class="field">
-        <label for="phone">Phone <span class="req" aria-hidden="true">*</span></label>
-        <input id="phone" name="phone" type="tel" inputmode="numeric" placeholder="10-digit mobile"
-               aria-describedby="err-phone" />
-        <span id="err-phone" class="error" aria-live="polite"></span>
-      </div>
+          <label>Email: <input type="email" id="email"></label>
+          <span id="err-email" class="error"></span><br>
 
-      <!-- Organization (optional) -->
-      <div class="field">
-        <label for="org">Organization</label>
-        <input id="org" name="org" type="text" autocomplete="organization" aria-describedby="err-org" />
-        <span id="err-org" class="error" aria-live="polite"></span>
-      </div>
+          <label>Phone: <input type="text" id="phone"></label>
+          <span id="err-phone" class="error"></span><br>
 
-      <!-- Event Type -->
-      <div class="field">
-        <label for="type">Event Type <span class="req" aria-hidden="true">*</span></label>
-        <select id="type" name="type" aria-describedby="err-type">
-          <option value="">Select…</option>
-          <option value="workshop">Workshop</option>
-          <option value="seminar">Seminar</option>
-          <option value="talk">Tech Talk</option>
-        </select>
-        <span id="err-type" class="error" aria-live="polite"></span>
-      </div>
+          <label>Event Type:
+            <select id="type">
+              <option value="">-- Select Type --</option>
+              <option value="Workshop">Workshop</option>
+              <option value="Seminar">Seminar</option>
+              <option value="Conference">Conference</option>
+            </select>
+          </label>
+          <span id="err-type" class="error"></span><br>
 
-      <!-- Attendance Mode -->
-      <fieldset class="field">
-        <legend>Attendance Mode <span class="req" aria-hidden="true">*</span></legend>
-        <div class="inline">
-          <label><input type="radio" name="mode" value="in-person" /> In-person</label>
-          <label><input type="radio" name="mode" value="online" /> Online</label>
-        </div>
-        <span id="err-mode" class="error" aria-live="polite"></span>
-      </fieldset>
+          <fieldset>
+            <legend>Mode of Attendance:</legend>
+            <label>
+              <input type="radio" name="mode" value="Online"> Online
+            </label>
 
-      <!-- Date -->
-      <div class="field">
-        <label for="date">Event Date <span class="req" aria-hidden="true">*</span></label>
-        <input id="date" name="date" type="date" aria-describedby="err-date" />
-        <span id="err-date" class="error" aria-live="polite"></span>
-      </div>
+            <label>
+              <input type="radio" name="mode" value="Offline"> Offline
+            </label>
+            <span id="err-mode" class="error"></span>
+          </fieldset>
 
-      <!-- Time (09:00–18:00) -->
-      <div class="field">
-        <label for="time">Preferred Time <span class="req" aria-hidden="true">*</span></label>
-        <input id="time" name="time" type="time" min="09:00" max="18:00" aria-describedby="err-time" />
-        <span id="err-time" class="error" aria-live="polite"></span>
-      </div>
+          <br>
 
-      <!-- Seats (1–5) -->
-      <div class="field">
-        <label for="seats">Seats Needed <span class="req" aria-hidden="true">*</span></label>
-        <input id="seats" name="seats" type="number" min="1" max="5" step="1" aria-describedby="err-seats" />
-        <span id="err-seats" class="error" aria-live="polite"></span>
-      </div>
+          <label>Date: <input type="date" id="date"></label>
+          <span id="err-date" class="error"></span><br>
 
-      <!-- Comments -->
-      <div class="field">
-        <label for="notes">Comments</label>
-        <textarea id="notes" name="notes" rows="3" placeholder="Anything we should know?"
-                  aria-describedby="err-notes"></textarea>
-        <span id="err-notes" class="error" aria-live="polite"></span>
-      </div>
+          <label>Seats: <input type="number" id="seats" min="1" max="5"></label>
+          <span id="err-seats" class="error"></span><br>
 
-      <!-- Terms -->
-      <div class="field">
-        <label class="checkbox">
-          <input id="terms" name="terms" type="checkbox" />
-          I agree to the Terms &amp; Privacy <span class="req" aria-hidden="true">*</span>
-        </label>
-        <span id="err-terms" class="error" aria-live="polite"></span>
-      </div>
+          <label><input type="checkbox" id="terms"> I agree to terms</label>
+          <span id="err-terms" class="error"></span><br><br>
 
-      <div class="actions">
-        <button type="submit" class="btn">Register</button>
-        <button type="reset" class="btn btn-ghost" id="resetBtn">Reset</button>
-      </div>
-    </form>
-  </main>
+          <button type="submit">Submit</button>
+          <button type="reset">Reset</button>
+        </form>
 
+      <p id="toast" style="display:none; color:green; font-weight:bold;">✅ Form Submitted Successfully!</p>
 
-  <script src="app.js" defer></script>
-</body>
+      <style>
+        body { font-family: Arial; line-height: 1.8; }
+        .error { color: red; font-size: 14px; margin-left: 6px; }
+        fieldset { width: 250px; }
+      </style>
+    </main>
+    <script src="app.js" defer></script>
+  </body>
 </html>

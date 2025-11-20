@@ -5,24 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Task 5 — Responsive Navigation & Footer</title>
   <link rel="stylesheet" href="styles.css" />
-  <!--
-    ==========================================================
-    Task 5: Navigation and Footer with Media Queries
-    Objective : Build an accessible, mobile-first navbar and a
-                multi-column footer that reflows with breakpoints.
-    Notes     : ARIA, keyboard support, sticky header, skip link.
-    ==========================================================
-  -->
 </head>
 <body>
-  <!-- Accessible skip link -->
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Sticky header with brand + nav -->
   <header class="site-header">
     <div class="container header-row">
       <a class="brand" href="#">
-        <!-- Inline SVG logo (no external asset) -->
         <svg class="logo" width="28" height="28" viewBox="0 0 24 24" aria-hidden="true">
           <defs>
             <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
@@ -35,19 +24,13 @@
         <span class="brand-text">Acme</span>
       </a>
 
-      <!-- Hamburger (visible on small screens) -->
-      <button id="menuToggle"
-              class="menu-toggle"
-              type="button"
-              aria-expanded="false"
-              aria-controls="siteNav"
-              aria-label="Open main menu">
+      <button id="menuToggle" class="menu-toggle" type="button"
+              aria-expanded="false" aria-controls="siteNav" aria-label="Open main menu">
         <span class="bar" aria-hidden="true"></span>
         <span class="bar" aria-hidden="true"></span>
         <span class="bar" aria-hidden="true"></span>
       </button>
 
-      <!-- Navigation -->
       <nav id="siteNav" class="site-nav" aria-label="Main">
         <ul class="nav-list">
           <li><a class="nav-link active" href="#">Home</a></li>
@@ -60,31 +43,53 @@
     </div>
   </header>
 
-  <!-- Demo content -->
   <main id="main" class="container content">
     <section class="hero">
       <h1>Responsive Navigation & Footer</h1>
-      <p>
-        Resize the window to see the navigation collapse into a menu button
-        and the footer reflow from one column to two and then four columns.
-      </p>
+      <p>Resize the window to see how navigation collapses and the footer layout changes.</p>
     </section>
 
     <section id="features" class="cards">
+      <h2>Features</h2>
       <article class="card"><h3>Mobile-first</h3><p>Start small, enhance at breakpoints.</p></article>
       <article class="card"><h3>Accessible</h3><p>Keyboard & ARIA-aware toggle.</p></article>
-      <article class="card"><h3>Sticky</h3><p>Header stays visible on scroll.</p></article>
+      <article class="card"><h3>Sticky Header</h3><p>Always visible for quick access.</p></article>
+    </section>
+
+    <section id="pricing" class="cards">
+      <h2>Pricing</h2>
+      <article class="card">
+        <h3>Starter</h3>
+        <p><strong>$0/month</strong><br>Basic tools for learners.</p>
+      </article>
+      <article class="card">
+        <h3>Pro</h3>
+        <p><strong>$9/month</strong><br>Ideal for small projects.</p>
+      </article>
+      <article class="card">
+        <h3>Enterprise</h3>
+        <p><strong>Custom</strong><br>Advanced support & features.</p>
+      </article>
+    </section>
+
+    <section id="about" class="cards">
+      <h2>About</h2>
+      <p>
+        Acme builds accessible, modular front-end components to teach modern responsive design.
+        This demo shows semantic HTML, ARIA usage, and responsive layouts using CSS media queries.
+      </p>
+      <p>
+        It’s part of your practical exercise for mastering navigation bars, skip links, sticky headers,
+        and multi-column footers that adapt to screen sizes.
+      </p>
     </section>
   </main>
 
-  <!-- Footer -->
   <footer class="site-footer">
     <div class="container footer-grid">
       <section class="footer-col">
         <h4>Acme</h4>
-        <p class="muted">
-          Clean starters for modern web apps. Built with HTML, CSS & JS.
-        </p>
+        <p class="muted">Clean starters for modern web apps. Built with HTML, CSS & JS.</p>
       </section>
 
       <nav class="footer-col" aria-label="Quick links">
@@ -106,7 +111,7 @@
         </ul>
       </section>
 
-      <section class="footer-col">
+      <section id="contact" class="footer-col">
         <h4>Newsletter</h4>
         <form class="newsletter" action="#" method="post" onsubmit="return false">
           <label class="sr-only" for="emailNews">Email</label>
@@ -127,6 +132,6 @@
   </footer>
 
   <script src="app.js" defer></script>
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
 </body>
 </html>

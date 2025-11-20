@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Task 4 — Simple Themed Layout (SCSS)</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <h1>Simple Theme Demo (SCSS)</h1>
+    <button id="toggleBtn">Toggle Theme</button>
+  </header>
+
+  <main class="content">
+    <section class="card">
+      <h2>Welcome!</h2>
+      <p>This layout switches between <strong>Light</strong> and <strong>Dark</strong> themes using <strong>CSS Variables</strong>.</p>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h3>Card 1</h3>
+        <p>Each card adapts colors from theme variables.</p>
+      </div>
+      <div class="card">
+        <h3>Card 2</h3>
+        <p>Light mode uses bright background and dark text.</p>
+      </div>
+      <div class="card">
+        <h3>Card 3</h3>
+        <p>Dark mode uses dark background and light text.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    © <span id="year"></span> Simple Theme Layout
+  </footer>
+
+  <script src="theme.js"></script>
+</body>
+</html>
